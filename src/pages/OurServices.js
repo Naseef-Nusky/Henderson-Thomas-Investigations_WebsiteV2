@@ -1,4 +1,6 @@
 import React from 'react';
+import FAQAccordion from '../components/sections/FAQAccordion';
+import ContactSection from '../components/sections/ContactSection';
 
 const OurServices = () => {
   const services = [
@@ -134,23 +136,11 @@ const OurServices = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-blue-900 text-white">
-        <div className="container mx-auto px-4 md:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Need Professional Investigation Services?
-          </h2>
-          <p className="text-xl mb-8 text-blue-100">
-            Contact us today for a confidential consultation about your investigation needs
-          </p>
-          <a 
-            href="/contact" 
-            className="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-colors duration-300 inline-block"
-          >
-            Get Started Today
-          </a>
-        </div>
-      </section>
+      {/* FAQ Section */}
+      <FAQAccordion />
+      
+      {/* Contact Section */}
+      <ContactSection />
     </div>
   );
 };
