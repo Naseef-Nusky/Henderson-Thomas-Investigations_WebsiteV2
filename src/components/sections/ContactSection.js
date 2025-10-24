@@ -32,37 +32,49 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-20 bg-cover bg-center bg-no-repeat relative" style={{backgroundImage: 'url(/contact.jpg)'}}>
-      <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+    <section id="contact" className="py-16 md:py-20 bg-cover bg-center bg-no-repeat relative" style={{backgroundImage: 'url(/contact.png)'}}>
+      <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white via-white/80 to-transparent"></div>
       <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             Call Us Today For A Free Confidential Discussion
           </h2>
-          <p className="text-gray-200 mb-6 max-w-4xl mx-auto text-sm md:text-base leading-relaxed">
+          <p className="text-gray-700 mb-6 max-w-4xl mx-auto text-sm md:text-base leading-relaxed">
             Professional private investigation services in London and across the UK. We deliver results with discretion, integrity, and professionalism.
           </p>
           <div className="text-center mb-6">
             <div className="flex items-center justify-center mb-2">
-              <svg className="w-6 h-6 text-blue-300 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              <h3 className="text-xl md:text-2xl font-bold text-white">Call Now</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900">Call Now</h3>
             </div>
-            <div className="text-2xl md:text-3xl font-bold text-blue-300">07826 416466</div>
+            <div className="text-2xl md:text-3xl font-bold text-blue-600">07826 416466</div>
           </div>
         </div>
 
-        {/* Main Content - Single Column Layout */}
+        {/* Main Content - Merged Layout */}
         <div className="max-w-4xl mx-auto">
-          {/* Contact Form */}
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white/50 backdrop-blur-lg rounded-2xl md:rounded-3xl shadow-2xl border border-gray-100 p-6 md:p-8">
+          <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-white">
+            <div className="grid lg:grid-cols-3 min-h-[600px]">
+              {/* Image Section */}
+              <div className="relative">
+                <img 
+                  src="/contact1.jpg" 
+                  alt="Contact Henderson Thomas Investigations" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-blue-800/10 to-indigo-900/20"></div>
+              </div>
+              
+              {/* Contact Form */}
+              <div className="lg:col-span-2 p-8 md:p-12 flex flex-col justify-center">
               {/* Form Header */}
               <div className="mb-6 md:mb-8 text-center">
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Contact Form</h3>
-                <p className="text-gray-600 text-sm md:text-base">Fill out the form below and we'll get back to you</p>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-600 mb-2">Submit Your Details Below For A Free Quote</h3>
+                <p className="text-gray-600 text-sm md:text-base">
+                Book your 100% discreet consultation</p>
                 {status.ok && (
                   <div className="mt-3 text-green-600 text-sm font-semibold">Message sent successfully.</div>
                 )}
@@ -74,7 +86,7 @@ const ContactSection = () => {
               {/* Contact Form */}
               <form onSubmit={submit} className="space-y-6">
                 <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">Your Name *</label>
+                  <label className="block text-sm font-semibold text-white text-left">Your Name *</label>
                   <input 
                     name="name" 
                     value={form.name} 
@@ -91,7 +103,7 @@ const ContactSection = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="block text-sm font-semibold text-gray-700">Your Email *</label>
+                    <label className="block text-sm font-semibold text-white text-left">Your Email *</label>
                     <input 
                       type="email" 
                       name="email" 
@@ -108,7 +120,7 @@ const ContactSection = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="block text-sm font-semibold text-gray-700">Phone Number *</label>
+                    <label className="block text-sm font-semibold text-white text-left">Phone Number *</label>
                     <input 
                       name="phone" 
                       value={form.phone} 
@@ -125,7 +137,7 @@ const ContactSection = () => {
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">Tell us about your case *</label>
+                  <label className="block text-sm font-semibold text-white text-left">Tell us about your case *</label>
                   <textarea 
                     name="message" 
                     rows={5} 
@@ -155,6 +167,7 @@ const ContactSection = () => {
                   </button>
                 </div>
               </form>
+              </div>
             </div>
           </div>
         </div>

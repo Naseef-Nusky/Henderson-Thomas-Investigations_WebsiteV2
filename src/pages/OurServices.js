@@ -1,4 +1,5 @@
 import React from 'react';
+import LatestBlogSection from '../components/sections/LatestBlogSection';
 import FAQAccordion from '../components/sections/FAQAccordion';
 import ContactSection from '../components/sections/ContactSection';
 
@@ -136,6 +137,9 @@ const OurServices = () => {
         </div>
       </section>
 
+      {/* Latest Blog Section */}
+      <LatestBlogSection />
+      
       {/* FAQ Section */}
       <FAQAccordion />
       

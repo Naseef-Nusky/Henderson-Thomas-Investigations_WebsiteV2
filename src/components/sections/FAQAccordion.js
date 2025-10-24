@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const FAQAccordion = () => {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState(0);
 
   const faqs = [
     {
