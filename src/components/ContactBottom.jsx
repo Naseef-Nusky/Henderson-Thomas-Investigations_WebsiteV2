@@ -285,7 +285,7 @@ const ContactFormSection = () => {
                       <p className="text-sm md:text-base text-gray-700 font-medium text-left">Email</p>
                       <a 
                         href="mailto:hendersonthomasinvestigations@outlook.com" 
-                        className="text-sm md:text-base text-gray-600 hover:text-[#0047b2] transition-colors text-left whitespace-nowrap"
+                        className="text-xs md:text-base text-gray-600 hover:text-[#0047b2] transition-colors text-left whitespace-nowrap"
                       >
                         hendersonthomasinvestigations@outlook.com
                       </a>
