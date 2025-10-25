@@ -38,17 +38,19 @@ const ContactSection = () => {
     
     try {
       const EMAILJS_CONFIG = {
-        serviceId: 'service_z9nrpnh',
-        templateId: 'template_o96o6re',
-        publicKey: 'KMtxeuThzMItKsmDc',
+        // serviceId: 'service_z9nrpnh',
+        // templateId: 'template_o96o6re',
+        // publicKey: 'KMtxeuThzMItKsmDc',
       };
 
       const result = await emailjs.send(
         EMAILJS_CONFIG.serviceId,
         EMAILJS_CONFIG.templateId,
         {
-          title: `New Contact Form Submission - ${form.name}`,
-          contactInfo: `Name: ${form.name.trim()} | Email: ${form.email.trim()} | Phone: ${form.phone.trim()}`,
+          title: `New Website Contact from ${form.name}`,
+          name: form.name.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
           message: form.message.trim(),
           time: new Date().toLocaleString(),
         },

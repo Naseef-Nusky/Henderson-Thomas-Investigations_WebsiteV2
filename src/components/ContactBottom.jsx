@@ -68,17 +68,19 @@ const ContactFormSection = () => {
     
     try {
       const EMAILJS_CONFIG = {
-        serviceId: 'service_z9nrpnh',
-        templateId: 'template_o96o6re',
-        publicKey: 'KMtxeuThzMItKsmDc',
+        // serviceId: 'service_z9nrpnh',
+        // templateId: 'template_o96o6re',
+        // publicKey: 'KMtxeuThzMItKsmDc',
       };
 
       const result = await emailjs.send(
         EMAILJS_CONFIG.serviceId,
         EMAILJS_CONFIG.templateId,
         {
-          title: `New Contact Form Submission - ${formData.name}`,
-          contactInfo: `Name: ${formData.name.trim()} | Email: ${formData.email.trim()} | Phone: ${formData.phone.trim()}`,
+          title: `New Website Contact from ${formData.name}`,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
           message: formData.message.trim(),
           time: new Date().toLocaleString(),
         },
@@ -283,7 +285,7 @@ const ContactFormSection = () => {
                       <p className="text-sm md:text-base text-gray-700 font-medium text-left">Email</p>
                       <a 
                         href="mailto:hendersonthomasinvestigations@outlook.com" 
-                        className="text-sm md:text-base text-gray-600 hover:text-[#0047b2] transition-colors text-left break-all"
+                        className="text-sm md:text-base text-gray-600 hover:text-[#0047b2] transition-colors text-left whitespace-nowrap"
                       >
                         hendersonthomasinvestigations@outlook.com
                       </a>
