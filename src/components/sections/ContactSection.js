@@ -38,9 +38,9 @@ const ContactSection = () => {
     
     try {
       const EMAILJS_CONFIG = {
-        serviceId: 'service_z9nrpnh',
-        templateId: 'template_o96o6re',
-        publicKey: 'KMtxeuThzMItKsmDc',
+        // serviceId: 'service_z9nrpnh',
+        // templateId: 'template_o96o6re',
+        // publicKey: 'KMtxeuThzMItKsmDc',
       };
 
       const result = await emailjs.send(
