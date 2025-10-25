@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 const ContactSection = () => {
@@ -16,36 +16,6 @@ const ContactSection = () => {
     }
   };
   
-  const validateForm = () => {
-    const newErrors = {};
-    
-    if (!form.name.trim()) {
-      newErrors.name = 'Name is required';
-    } else if (form.name.trim().length < 2) {
-      newErrors.name = 'Name must be at least 2 characters';
-    }
-    
-    if (!form.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!emailOk) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-    
-    if (!form.phone.trim()) {
-      newErrors.phone = 'Phone number is required';
-    } else if (!phoneOk) {
-      newErrors.phone = 'Please enter a valid phone number';
-    }
-    
-    if (!form.message.trim()) {
-      newErrors.message = 'Message is required';
-    } else if (form.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
-    }
-    
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
   
   const [status, setStatus] = useState({ sending: false, ok: null, error: '' });
   const [touched, setTouched] = useState({ name: false, phone: false, email: false, message: false });

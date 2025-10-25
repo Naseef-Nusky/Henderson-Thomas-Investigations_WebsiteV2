@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 const ContactFormSection = () => {
@@ -30,28 +30,6 @@ const ContactFormSection = () => {
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const phoneOk = /^\+?\d[\d\s-]{6,}$/.test(formData.phone);
 
-  const validateField = (name, value) => {
-    switch (name) {
-      case 'name':
-        if (!value.trim()) return 'Name is required';
-        if (value.trim().length < 2) return 'Name must be at least 2 characters';
-        return '';
-      case 'email':
-        if (!value.trim()) return 'Email is required';
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Please enter a valid email address';
-        return '';
-      case 'phone':
-        if (!value.trim()) return 'Phone number is required';
-        if (!/^\+?\d[\d\s-]{6,}$/.test(value)) return 'Please enter a valid phone number';
-        return '';
-      case 'message':
-        if (!value.trim()) return 'Message is required';
-        if (value.trim().length < 10) return 'Message must be at least 10 characters';
-        return '';
-      default:
-        return '';
-    }
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -90,9 +68,9 @@ const ContactFormSection = () => {
     
     try {
       const EMAILJS_CONFIG = {
-        serviceId: 'service_z9nrpnh',
-        templateId: 'template_o96o6re',
-        publicKey: 'KMtxeuThzMItKsmDc',
+        // serviceId: 'service_z9nrpnh',
+        // templateId: 'template_o96o6re',
+        // publicKey: 'KMtxeuThzMItKsmDc',
       };
 
       const result = await emailjs.send(
