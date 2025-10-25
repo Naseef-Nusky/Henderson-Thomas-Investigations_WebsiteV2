@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' });
@@ -47,30 +48,56 @@ const ContactSection = () => {
   };
   
   const [status, setStatus] = useState({ sending: false, ok: null, error: '' });
+  const [touched, setTouched] = useState({ name: false, phone: false, email: false, message: false });
+  const [submitTried, setSubmitTried] = useState(false);
+
+  const onBlur = (e) => {
+    setTouched({ ...touched, [e.target.name]: true });
+  };
+
   const submit = async (e) => {
     e.preventDefault();
-    if (!validateForm()) return;
+    setSubmitTried(true);
+    
+    // Check if all required fields are valid
+    if (!form.name.trim() || !emailOk || !phoneOk || !form.message.trim()) {
+      return;
+    }
     
     setStatus({ sending: true, ok: null, error: '' });
+    
     try {
-      const res = await fetch('/contact.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-        body: new URLSearchParams({
+      const EMAILJS_CONFIG = {
+        serviceId: 'service_z9nrpnh',
+        templateId: 'template_o96o6re',
+        publicKey: 'KMtxeuThzMItKsmDc',
+      };
+
+      const result = await emailjs.send(
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateId,
+        {
+          title: `New Website Contact from ${form.name}`,
           name: form.name.trim(),
-          mobile: form.phone.trim(),
           email: form.email.trim(),
+          phone: form.phone.trim(),
           message: form.message.trim(),
-          source: 'contact',
-        }).toString(),
-      });
-      const data = await res.json().catch(() => ({ ok: false, error: 'Invalid server response' }));
-      if (!res.ok || !data.ok) throw new Error(data.error || 'Failed to send');
-      setStatus({ sending: false, ok: true, error: '' });
-      setForm({ name: '', phone: '', email: '', message: '' });
-      setErrors({ name: '', phone: '', email: '', message: '' });
+          time: new Date().toLocaleString(),
+        },
+        EMAILJS_CONFIG.publicKey
+      );
+
+      if (result.status === 200) {
+        setStatus({ sending: false, ok: true, error: '' });
+        setForm({ name: '', phone: '', email: '', message: '' });
+        setTouched({ name: false, phone: false, email: false, message: false });
+        setSubmitTried(false);
+      } else {
+        throw new Error('Failed to send');
+      }
     } catch (err) {
-      setStatus({ sending: false, ok: false, error: err.message || 'Failed to send' });
+      setStatus({ sending: false, ok: false, error: err?.text || err?.message || 'Failed to send' });
+      console.error('EmailJS Error:', err);
     }
   };
 
@@ -134,18 +161,17 @@ const ContactSection = () => {
                     name="name" 
                     value={form.name} 
                     onChange={handle} 
+                    onBlur={onBlur}
                     required 
                     className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-100 ${
-                      errors.name 
-                        ? 'border-red-300 focus:border-red-500 bg-red-50/30' 
-                        : form.name.trim() 
-                          ? 'border-green-300 focus:border-green-500 bg-green-50/30' 
-                          : 'border-gray-300 focus:border-blue-500'
+                      form.name.trim() 
+                        ? 'border-green-300 focus:border-green-500 bg-green-50/30' 
+                        : 'border-gray-300 focus:border-blue-500'
                     }`} 
                     placeholder="Enter your full name" 
                   />
-                  {errors.name && (
-                    <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+                  {((touched.name || submitTried) && !form.name.trim()) && (
+                    <p className="text-red-400 text-sm mt-1">Please enter your name.</p>
                   )}
                 </div>
 
@@ -157,18 +183,17 @@ const ContactSection = () => {
                       name="email" 
                       value={form.email} 
                       onChange={handle} 
+                      onBlur={onBlur}
                       required 
                       className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-100 ${
-                        errors.email 
-                          ? 'border-red-300 focus:border-red-500 bg-red-50/30' 
-                          : emailOk 
-                            ? 'border-green-300 focus:border-green-500 bg-green-50/30' 
-                            : 'border-gray-300 focus:border-blue-500'
+                        emailOk 
+                          ? 'border-green-300 focus:border-green-500 bg-green-50/30' 
+                          : 'border-gray-300 focus:border-blue-500'
                       }`} 
                       placeholder="Enter your email address" 
                     />
-                    {errors.email && (
-                      <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                    {((touched.email || submitTried) && !emailOk) && (
+                      <p className="text-red-400 text-sm mt-1">Please enter a valid email address.</p>
                     )}
                   </div>
                   
@@ -178,18 +203,17 @@ const ContactSection = () => {
                       name="phone" 
                       value={form.phone} 
                       onChange={handle} 
+                      onBlur={onBlur}
                       required 
                       className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-100 ${
-                        errors.phone 
-                          ? 'border-red-300 focus:border-red-500 bg-red-50/30' 
-                          : phoneOk 
-                            ? 'border-green-300 focus:border-green-500 bg-green-50/30' 
-                            : 'border-gray-300 focus:border-blue-500'
+                        phoneOk 
+                          ? 'border-green-300 focus:border-green-500 bg-green-50/30' 
+                          : 'border-gray-300 focus:border-blue-500'
                       }`} 
                       placeholder="Enter your phone number" 
                     />
-                    {errors.phone && (
-                      <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+                    {((touched.phone || submitTried) && !phoneOk) && (
+                      <p className="text-red-400 text-sm mt-1">Please enter a valid phone number.</p>
                     )}
                   </div>
                 </div>
@@ -201,18 +225,17 @@ const ContactSection = () => {
                     rows={5} 
                     value={form.message} 
                     onChange={handle} 
+                    onBlur={onBlur}
                     required
                     className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-100 resize-none ${
-                      errors.message 
-                        ? 'border-red-300 focus:border-red-500 bg-red-50/30' 
-                        : form.message.trim() 
-                          ? 'border-green-300 focus:border-green-500 bg-green-50/30' 
-                          : 'border-gray-300 focus:border-blue-500'
+                      form.message.trim() 
+                        ? 'border-green-300 focus:border-green-500 bg-green-50/30' 
+                        : 'border-gray-300 focus:border-blue-500'
                     }`} 
                     placeholder="Tell us about your investigation needs..." 
                   />
-                  {errors.message && (
-                    <p className="text-red-400 text-sm mt-1">{errors.message}</p>
+                  {((touched.message || submitTried) && !form.message.trim()) && (
+                    <p className="text-red-400 text-sm mt-1">Please enter a message.</p>
                   )}
                 </div>
                 
@@ -220,9 +243,9 @@ const ContactSection = () => {
                 <div className="pt-4">
                   <button 
                     type="submit" 
-                    disabled={status.sending || !form.name || !emailOk || !form.message.trim() || !phoneOk} 
+                    disabled={status.sending || !form.name.trim() || !emailOk || !phoneOk || !form.message.trim()} 
                     className={`w-full inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold text-white transition-all duration-300 transform hover:scale-105 ${
-                      !status.sending && form.name && emailOk && phoneOk && form.message.trim()
+                      !status.sending && form.name.trim() && emailOk && phoneOk && form.message.trim()
                         ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl' 
                         : 'bg-gray-400 cursor-not-allowed'
                     }`}
