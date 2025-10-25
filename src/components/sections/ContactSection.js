@@ -2,13 +2,55 @@ import React, { useState } from 'react';
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' });
+  const [errors, setErrors] = useState({ name: '', phone: '', email: '', message: '' });
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
   const phoneOk = /^\+?\d[\d\s-]{6,}$/.test(form.phone);
-  const handle = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handle = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: '' });
+    }
+  };
+  
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!form.name.trim()) {
+      newErrors.name = 'Name is required';
+    } else if (form.name.trim().length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
+    }
+    
+    if (!form.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!emailOk) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+    
+    if (!form.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!phoneOk) {
+      newErrors.phone = 'Please enter a valid phone number';
+    }
+    
+    if (!form.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (form.message.trim().length < 10) {
+      newErrors.message = 'Message must be at least 10 characters';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
   const [status, setStatus] = useState({ sending: false, ok: null, error: '' });
   const submit = async (e) => {
     e.preventDefault();
-    if (!form.name || !emailOk || !phoneOk || !form.message.trim()) return;
+    if (!validateForm()) return;
+    
     setStatus({ sending: true, ok: null, error: '' });
     try {
       const res = await fetch('/contact.php', {
@@ -26,6 +68,7 @@ const ContactSection = () => {
       if (!res.ok || !data.ok) throw new Error(data.error || 'Failed to send');
       setStatus({ sending: false, ok: true, error: '' });
       setForm({ name: '', phone: '', email: '', message: '' });
+      setErrors({ name: '', phone: '', email: '', message: '' });
     } catch (err) {
       setStatus({ sending: false, ok: false, error: err.message || 'Failed to send' });
     }
@@ -93,12 +136,17 @@ const ContactSection = () => {
                     onChange={handle} 
                     required 
                     className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-100 ${
-                      form.name.trim() 
-                        ? 'border-green-300 focus:border-green-500 bg-green-50/30' 
-                        : 'border-gray-300 focus:border-blue-500'
+                      errors.name 
+                        ? 'border-red-300 focus:border-red-500 bg-red-50/30' 
+                        : form.name.trim() 
+                          ? 'border-green-300 focus:border-green-500 bg-green-50/30' 
+                          : 'border-gray-300 focus:border-blue-500'
                     }`} 
                     placeholder="Enter your full name" 
                   />
+                  {errors.name && (
+                    <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+                  )}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -111,12 +159,17 @@ const ContactSection = () => {
                       onChange={handle} 
                       required 
                       className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-100 ${
-                        emailOk 
-                          ? 'border-green-300 focus:border-green-500 bg-green-50/30' 
-                          : 'border-gray-300 focus:border-blue-500'
+                        errors.email 
+                          ? 'border-red-300 focus:border-red-500 bg-red-50/30' 
+                          : emailOk 
+                            ? 'border-green-300 focus:border-green-500 bg-green-50/30' 
+                            : 'border-gray-300 focus:border-blue-500'
                       }`} 
                       placeholder="Enter your email address" 
                     />
+                    {errors.email && (
+                      <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                    )}
                   </div>
                   
                   <div className="space-y-2">
@@ -127,12 +180,17 @@ const ContactSection = () => {
                       onChange={handle} 
                       required 
                       className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-100 ${
-                        phoneOk 
-                          ? 'border-green-300 focus:border-green-500 bg-green-50/30' 
-                          : 'border-gray-300 focus:border-blue-500'
+                        errors.phone 
+                          ? 'border-red-300 focus:border-red-500 bg-red-50/30' 
+                          : phoneOk 
+                            ? 'border-green-300 focus:border-green-500 bg-green-50/30' 
+                            : 'border-gray-300 focus:border-blue-500'
                       }`} 
                       placeholder="Enter your phone number" 
                     />
+                    {errors.phone && (
+                      <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+                    )}
                   </div>
                 </div>
                 
@@ -144,9 +202,18 @@ const ContactSection = () => {
                     value={form.message} 
                     onChange={handle} 
                     required
-                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-300 focus:outline-none resize-none" 
+                    className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-100 resize-none ${
+                      errors.message 
+                        ? 'border-red-300 focus:border-red-500 bg-red-50/30' 
+                        : form.message.trim() 
+                          ? 'border-green-300 focus:border-green-500 bg-green-50/30' 
+                          : 'border-gray-300 focus:border-blue-500'
+                    }`} 
                     placeholder="Tell us about your investigation needs..." 
                   />
+                  {errors.message && (
+                    <p className="text-red-400 text-sm mt-1">{errors.message}</p>
+                  )}
                 </div>
                 
                 {/* Submit Button */}

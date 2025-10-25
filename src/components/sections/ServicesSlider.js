@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ServicesSlider = () => {
   const services = [
@@ -8,6 +9,7 @@ const ServicesSlider = () => {
       desc:
         'Our expert private investigators carry out discreet surveillance to capture photo and video evidence you can rely on. Whether it\'s for legal, personal, or corporate matters, we provide clear, professional results with complete confidentiality.',
       img: '/covert.jpg',
+      link: '/service/covert'
     },
     {
       id: 2,
@@ -15,6 +17,7 @@ const ServicesSlider = () => {
       desc:
         'Every 90 seconds someone goes missing in the UK. Our team uses advanced tracing methods, intelligence databases, and global contacts to locate individuals quickly and effectively — giving you answers and peace of mind.',
       img: '/missing.jpg',
+      link: '/service/missing'
     },
     {
       id: 3,
@@ -22,6 +25,7 @@ const ServicesSlider = () => {
       desc:
         'Fraud costs UK victims billions each year. We specialise in exposing scams, financial deception, and identity theft, gathering evidence you can act on. Protect yourself with fast, discreet support from our experienced fraud investigators.',
       img: '/fraud.jpg',
+      link: '/service/fraud'
     },
     {
       id: 4,
@@ -29,6 +33,7 @@ const ServicesSlider = () => {
       desc:
         'From background checks and online dating enquiries to infidelity and family matters, our detectives handle sensitive cases with care and discretion. We uncover the truth so you can make informed decisions with confidence.',
       img: '/personal.jpg',
+      link: '/service/personal'
     },
     {
       id: 5,
@@ -36,6 +41,7 @@ const ServicesSlider = () => {
       desc:
         'We provide thorough background checks for employment, finance, and personal matters. With discreet and accurate verification, our investigators deliver the facts you need to protect your interests and make smart choices.',
       img: '/background.jpg',
+      link: '/service/background'
     },
   ];
 
@@ -171,13 +177,16 @@ const ServicesSlider = () => {
                       </p>
                       
                       {/* Read More Button */}
-                      <div className="mt-auto text-right">
-                        <button className="text-blue-600 font-semibold hover:text-blue-800 transition-colors duration-300 flex items-center ml-auto">
+                      <div className="mt-auto flex justify-end">
+                        <Link 
+                          to={s.link}
+                          className="text-blue-600 font-semibold hover:text-blue-800 transition-colors duration-300 flex items-center"
+                        >
                           Read More
                           <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                           </svg>
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </div>
