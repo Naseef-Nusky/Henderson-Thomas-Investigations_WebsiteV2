@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 const ContactFormSection = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,17 @@ const ContactFormSection = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [touched, setTouched] = useState({
+    name: false,
+    email: false,
+    phone: false,
+    message: false
+  });
+  const [submitTried, setSubmitTried] = useState(false);
+
+  // Validation helpers
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
+  const phoneOk = /^\+?\d[\d\s-]{6,}$/.test(formData.phone);
 
   const validateField = (name, value) => {
     switch (name) {
@@ -57,47 +69,67 @@ const ContactFormSection = () => {
     }
   };
 
-  const validateForm = () => {
-    const newErrors = {};
-    let isValid = true;
-
-    Object.keys(formData).forEach(key => {
-      const error = validateField(key, formData[key]);
-      newErrors[key] = error;
-      if (error) isValid = false;
+  const onBlur = (e) => {
+    setTouched({
+      ...touched,
+      [e.target.name]: true
     });
-
-    setErrors(newErrors);
-    return isValid;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitTried(true);
     
-    if (!validateForm()) {
+    // Check if all required fields are valid
+    if (!formData.name.trim() || !emailOk || !phoneOk || !formData.message.trim()) {
       return;
     }
     
     setIsSubmitting(true);
+    setSubmitStatus(null);
     
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        message: ''
-      });
-      setErrors({
-        name: '',
-        email: '',
-        phone: '',
-        message: ''
-      });
-    } catch (error) {
+      const EMAILJS_CONFIG = {
+        serviceId: 'service_z9nrpnh',
+        templateId: 'template_o96o6re',
+        publicKey: 'KMtxeuThzMItKsmDc',
+      };
+
+      const result = await emailjs.send(
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateId,
+        {
+          title: `New Website Contact from ${formData.name}`,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          message: formData.message.trim(),
+          time: new Date().toLocaleString(),
+        },
+        EMAILJS_CONFIG.publicKey
+      );
+
+      if (result.status === 200) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+        setTouched({
+          name: false,
+          email: false,
+          phone: false,
+          message: false
+        });
+        setSubmitTried(false);
+      } else {
+        throw new Error('Failed to send');
+      }
+    } catch (err) {
       setSubmitStatus('error');
+      console.error('EmailJS Error:', err);
     } finally {
       setIsSubmitting(false);
     }
@@ -121,98 +153,110 @@ const ContactFormSection = () => {
             {/* Contact Form */}
             <div className="md:col-span-2">
               <div className="border border-gray-200 rounded-lg p-4 md:p-6 bg-gray-50">
-                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2 text-left">
-                      Your Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="Enter your full name"
-                      className={`w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base border rounded-lg focus:ring-2 focus:ring-[#0047b2] focus:border-transparent ${
-                        errors.name ? 'border-red-300 bg-red-50' : 'border-gray-300'
-                      }`}
-                    />
-                    {errors.name && (
-                      <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-                    )}
-                  </div>
+                        <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                          <div>
+                            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2 text-left">
+                              Your Name *
+                            </label>
+                            <input
+                              type="text"
+                              id="name"
+                              name="name"
+                              value={formData.name}
+                              onChange={handleChange}
+                              onBlur={onBlur}
+                              required
+                              placeholder="Enter your full name"
+                              className={`w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base border rounded-lg focus:ring-2 focus:ring-[#0047b2] focus:border-transparent ${
+                                formData.name.trim() 
+                                  ? 'border-green-300 bg-green-50/30' 
+                                  : 'border-gray-300'
+                              }`}
+                            />
+                            {((touched.name || submitTried) && !formData.name.trim()) && (
+                              <p className="text-red-500 text-sm mt-1">Please enter your name.</p>
+                            )}
+                          </div>
 
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2 text-left">
-                      Your Email *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      placeholder="Enter your email address"
-                      className={`w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base border rounded-lg focus:ring-2 focus:ring-[#0047b2] focus:border-transparent ${
-                        errors.email ? 'border-red-300 bg-red-50' : 'border-gray-300'
-                      }`}
-                    />
-                    {errors.email && (
-                      <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                    )}
-                  </div>
+                          <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2 text-left">
+                              Your Email *
+                            </label>
+                            <input
+                              type="email"
+                              id="email"
+                              name="email"
+                              value={formData.email}
+                              onChange={handleChange}
+                              onBlur={onBlur}
+                              required
+                              placeholder="Enter your email address"
+                              className={`w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base border rounded-lg focus:ring-2 focus:ring-[#0047b2] focus:border-transparent ${
+                                emailOk 
+                                  ? 'border-green-300 bg-green-50/30' 
+                                  : 'border-gray-300'
+                              }`}
+                            />
+                            {((touched.email || submitTried) && !emailOk) && (
+                              <p className="text-red-500 text-sm mt-1">Please enter a valid email address.</p>
+                            )}
+                          </div>
 
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2 text-left">
-                      Phone Number *
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                      placeholder="Enter your phone number"
-                      className={`w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base border rounded-lg focus:ring-2 focus:ring-[#0047b2] focus:border-transparent ${
-                        errors.phone ? 'border-red-300 bg-red-50' : 'border-gray-300'
-                      }`}
-                    />
-                    {errors.phone && (
-                      <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
-                    )}
-                  </div>
+                          <div>
+                            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2 text-left">
+                              Phone Number *
+                            </label>
+                            <input
+                              type="tel"
+                              id="phone"
+                              name="phone"
+                              value={formData.phone}
+                              onChange={handleChange}
+                              onBlur={onBlur}
+                              required
+                              placeholder="Enter your phone number"
+                              className={`w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base border rounded-lg focus:ring-2 focus:ring-[#0047b2] focus:border-transparent ${
+                                phoneOk 
+                                  ? 'border-green-300 bg-green-50/30' 
+                                  : 'border-gray-300'
+                              }`}
+                            />
+                            {((touched.phone || submitTried) && !phoneOk) && (
+                              <p className="text-red-500 text-sm mt-1">Please enter a valid phone number.</p>
+                            )}
+                          </div>
 
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2 text-left">
-                      Tell us about your case *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={4}
-                      placeholder="Tell us about your investigation needs..."
-                      className={`w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base border rounded-lg focus:ring-2 focus:ring-[#0047b2] focus:border-transparent resize-none ${
-                        errors.message ? 'border-red-300 bg-red-50' : 'border-gray-300'
-                      }`}
-                    />
-                    {errors.message && (
-                      <p className="text-red-500 text-sm mt-1">{errors.message}</p>
-                    )}
-                  </div>
+                          <div>
+                            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2 text-left">
+                              Tell us about your case *
+                            </label>
+                            <textarea
+                              id="message"
+                              name="message"
+                              value={formData.message}
+                              onChange={handleChange}
+                              onBlur={onBlur}
+                              required
+                              rows={4}
+                              placeholder="Tell us about your investigation needs..."
+                              className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base border rounded-lg focus:ring-2 focus:ring-[#0047b2] focus:border-transparent resize-none border-gray-300"
+                            />
+                            {((touched.message || submitTried) && !formData.message.trim()) && (
+                              <p className="text-red-500 text-sm mt-1">Please enter a message.</p>
+                            )}
+                          </div>
 
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-[#0047b2] text-white py-2 md:py-3 px-4 md:px-6 rounded-lg font-semibold text-sm md:text-base hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? 'Sending...' : 'Get Your Free Quote'}
-                  </button>
+                          <button
+                            type="submit"
+                            disabled={isSubmitting || !formData.name.trim() || !emailOk || !phoneOk || !formData.message.trim()}
+                            className={`w-full py-2 md:py-3 px-4 md:px-6 rounded-lg font-semibold text-sm md:text-base transition-colors ${
+                              !isSubmitting && formData.name.trim() && emailOk && phoneOk && formData.message.trim()
+                                ? 'bg-[#0047b2] text-white hover:bg-blue-700'
+                                : 'bg-gray-400 text-white cursor-not-allowed'
+                            }`}
+                          >
+                            {isSubmitting ? 'Sending...' : 'Get Your Free Quote'}
+                          </button>
 
                   {submitStatus === 'success' && (
                     <div className="p-3 md:p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg text-sm md:text-base">
