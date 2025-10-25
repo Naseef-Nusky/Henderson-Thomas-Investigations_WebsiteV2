@@ -1,49 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SEO from '../../SEO';
 
 const BackgroundCheck = () => {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Background Checking Services",
-    "description": "Professional background check services for employment, finance, and personal matters. Thorough verification with discreet and accurate results to protect your interests.",
-    "url": "https://hendersonthomasinvestigations.com/service/background",
-    "provider": {
-      "@type": "Organization",
-      "name": "Henderson Thomas Investigations",
-      "url": "https://hendersonthomasinvestigations.com",
-      "telephone": "07826 416466",
-      "email": "private@hendersonthomasinvestigations.com"
-    },
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": "London"
-      },
-      {
-        "@type": "Country",
-        "name": "United Kingdom"
-      }
-    ],
-    "serviceType": "Background Check",
-    "offers": {
-      "@type": "Offer",
-      "description": "Comprehensive background checking services including criminal history, employment verification, education verification, and credit checks.",
-      "priceCurrency": "GBP"
-    }
-  };
-
   return (
-    <>
-      <SEO 
-        title="Background Checking Services - Professional Verification London | Henderson Thomas Investigations"
-        description="Professional background check services for employment, finance, and personal matters. Thorough verification with discreet and accurate results to protect your interests and make informed decisions."
-        keywords="background check services London, employment verification UK, criminal background check, education verification, credit check services, professional verification"
-        url="/service/background"
-        structuredData={structuredData}
-      />
-      <section className="bg-gray-50 pt-16 md:pt-20">
+    <section className="bg-gray-50 pt-16 md:pt-20">
       {/* Hero Section */}
       <div
         className="relative w-full h-96 md:h-[500px] flex items-center justify-center text-center"
@@ -243,7 +203,6 @@ const BackgroundCheck = () => {
         </div>
       </div>
     </section>
-    </>
   );
 };
 

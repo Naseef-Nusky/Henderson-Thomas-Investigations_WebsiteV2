@@ -3,42 +3,11 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 import { getBlogPosts, formatBlogPost, getImageUrl } from '../lib/contentful';
-import SEO from '../SEO';
 
 const BlogPage = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "Henderson Thomas Investigations Blog",
-    "description": "Stay informed with the latest insights, tips, and updates from Henderson Thomas Investigations. Expert team shares valuable knowledge about private investigation services and industry trends.",
-    "url": "https://hendersonthomasinvestigations.com/blogs",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Henderson Thomas Investigations",
-      "url": "https://hendersonthomasinvestigations.com",
-      "logo": "https://hendersonthomasinvestigations.com/logo.png"
-    },
-    "blogPost": posts.map(post => ({
-      "@type": "BlogPosting",
-      "headline": post.title,
-      "description": post.excerpt ? documentToPlainTextString(post.excerpt) : 'No excerpt available',
-      "url": `https://hendersonthomasinvestigations.com/blogs/${post.slug}`,
-      "datePublished": post.publishedDate,
-      "author": {
-        "@type": "Organization",
-        "name": "Henderson Thomas Investigations"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Henderson Thomas Investigations",
-        "logo": "https://hendersonthomasinvestigations.com/logo.png"
-      }
-    }))
-  };
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -86,15 +55,7 @@ const BlogPage = () => {
   }
 
   return (
-    <>
-      <SEO 
-        title="Our Blog - Private Investigation Insights & Tips | Henderson Thomas Investigations"
-        description="Stay informed with the latest insights, tips, and updates from Henderson Thomas Investigations. Our expert team shares valuable knowledge about private investigation services and industry trends."
-        keywords="private investigation blog, detective services insights, investigation tips, corporate investigation news, fraud investigation updates, surveillance techniques blog"
-        url="/blogs"
-        structuredData={structuredData}
-      />
-      <div className="min-h-screen bg-gray-50 pt-16 md:pt-20">
+    <div className="min-h-screen bg-gray-50 pt-16 md:pt-20">
       {/* Page Header - Full Width */}
       <section className="relative mb-14 h-80">
         {/* Background Image */}
@@ -177,7 +138,6 @@ const BlogPage = () => {
         </div>
       </div>
     </div>
-    </>
   );
 };
 

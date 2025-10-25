@@ -1,63 +1,10 @@
 import React from "react";
-import SEO from '../SEO';
 // import { Link } from "react-router-dom";
 const AboutUs = () => {
   const image = "/background.jpg"; // Replace with your image path
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "About Henderson Thomas Investigations",
-    "description": "Learn about Henderson Thomas Investigations, UK's top-rated private detective agency specializing in corporate investigations, covert surveillance, and discreet investigative services.",
-    "url": "https://hendersonthomasinvestigations.com/about",
-    "mainEntity": {
-      "@type": "Organization",
-      "name": "Henderson Thomas Investigations",
-      "description": "UK's top-rated private detective agency specializing in corporate investigations, covert surveillance, and discreet investigative services.",
-      "url": "https://hendersonthomasinvestigations.com",
-      "logo": "https://hendersonthomasinvestigations.com/logo.png",
-      "telephone": "07826 416466",
-      "email": "private@hendersonthomasinvestigations.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "1st Floor, 238 Kensington High St",
-        "addressLocality": "London",
-        "postalCode": "W8 6SN",
-        "addressCountry": "GB"
-      },
-      "foundingDate": "2020",
-      "areaServed": [
-        {
-          "@type": "City",
-          "name": "London"
-        },
-        {
-          "@type": "Country",
-          "name": "United Kingdom"
-        }
-      ],
-      "serviceType": [
-        "Private Investigation",
-        "Corporate Investigation",
-        "Covert Surveillance",
-        "Fraud Investigation",
-        "Missing Persons",
-        "Background Checks",
-        "Personal Investigation"
-      ]
-    }
-  };
-
   return (
-    <>
-      <SEO 
-        title="About Us - Professional Private Detectives London | Henderson Thomas Investigations"
-        description="Learn about Henderson Thomas Investigations, UK's top-rated private detective agency. Our experienced team provides professional, confidential investigative services including corporate investigations, covert surveillance, and fraud investigation."
-        keywords="about private detective London, Henderson Thomas Investigations team, professional investigators UK, corporate investigation services, experienced private detectives"
-        url="/about"
-        structuredData={structuredData}
-      />
-      <div className="pt-16 md:pt-20">
+    <div className="pt-16 md:pt-20">
       {/* Page Header - Full Width */}
       <section className="relative h-80">
         {/* Background Image */}
@@ -113,7 +60,6 @@ const AboutUs = () => {
         </div>
       </section>
     </div>
-    </>
   );
 };
 

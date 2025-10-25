@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './components/pages/Home';
@@ -21,30 +20,28 @@ import './App.css';
 
 function App() {
   return (
-    <HelmetProvider>
-      <Router>
-        <div className="App">
-          <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/our-services" element={<Services />} />
-            <Route path="/blogs" element={<BlogPage />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/blogs/:slug" element={<SingleBlogPost />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-            {/* Service pages */}
-            <Route path="/service/background" element={<BackgroundCheck />} />
-            <Route path="/service/covert" element={<CovertSurveillance />} />
-            <Route path="/service/fraud" element={<FraudInvestigation />} />
-            <Route path="/service/missing" element={<MissingPersons />} />
-            <Route path="/service/personal" element={<PersonalInvestigation />} />
-          </Routes>
-          <Footer />
-        </div>
-      </Router>
-    </HelmetProvider>
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/our-services" element={<Services />} />
+          <Route path="/blogs" element={<BlogPage />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/blogs/:slug" element={<SingleBlogPost />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          {/* Service pages */}
+          <Route path="/service/background" element={<BackgroundCheck />} />
+          <Route path="/service/covert" element={<CovertSurveillance />} />
+          <Route path="/service/fraud" element={<FraudInvestigation />} />
+          <Route path="/service/missing" element={<MissingPersons />} />
+          <Route path="/service/personal" element={<PersonalInvestigation />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

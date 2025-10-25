@@ -1,53 +1,10 @@
 // src/pages/ContactPage.jsx
 import React from "react";
 import ContactFormSection from '../ContactBottom';
-import SEO from '../SEO';
 
 const ContactPage = () => {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": "Contact Henderson Thomas Investigations",
-    "description": "Contact Henderson Thomas Investigations for professional private detective services. Get a free confidential consultation for corporate investigations, covert surveillance, fraud investigation, and more.",
-    "url": "https://hendersonthomasinvestigations.com/contact",
-    "mainEntity": {
-      "@type": "Organization",
-      "name": "Henderson Thomas Investigations",
-      "telephone": "07826 416466",
-      "email": "private@hendersonthomasinvestigations.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "1st Floor, 238 Kensington High St",
-        "addressLocality": "London",
-        "postalCode": "W8 6SN",
-        "addressCountry": "GB"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "07826 416466",
-        "contactType": "customer service",
-        "availableLanguage": "English",
-        "areaServed": "GB",
-        "hoursAvailable": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "opens": "00:00",
-          "closes": "23:59"
-        }
-      }
-    }
-  };
-
   return (
-    <>
-      <SEO 
-        title="Contact Us - Free Confidential Consultation | Henderson Thomas Investigations"
-        description="Contact Henderson Thomas Investigations for professional private detective services. Get a free confidential consultation for corporate investigations, covert surveillance, fraud investigation, missing persons, and background checks."
-        keywords="contact private detective London, free consultation private investigator, confidential investigation services, corporate investigation contact, fraud investigation consultation"
-        url="/contact"
-        structuredData={structuredData}
-      />
-      <div className="bg-gray-50 pt-16 md:pt-20 pb-24">
+    <div className="bg-gray-50 pt-16 md:pt-20 pb-24">
       {/* Page Header */}
       <section className="relative h-80">
         {/* Background Image */}
@@ -79,7 +36,6 @@ const ContactPage = () => {
       <ContactFormSection />
 
     </div>
-    </>
   );
 };
 
