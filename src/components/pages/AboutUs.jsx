@@ -1,10 +1,87 @@
 import React from "react";
+import SEO from '../SEO';
 // import { Link } from "react-router-dom";
 const AboutUs = () => {
   const image = "/background.jpg"; // Replace with your image path
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Henderson Thomas Investigations",
+    "description": "Learn about Henderson Thomas Investigations, a leading private detective agency specializing in professional investigation services with discretion and expertise.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Henderson Thomas Investigations",
+      "url": "https://hendersonthomasinvestigations.com",
+      "description": "Professional private investigation agency specializing in corporate investigations, covert surveillance, and discreet investigative services.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1st Floor, 238 Kensington High St",
+        "addressLocality": "London",
+        "postalCode": "W8 6SN",
+        "addressCountry": "GB"
+      },
+      "telephone": "07826 416466",
+      "email": "private@hendersonthomasinvestigations.com",
+      "foundingDate": "2020",
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Kingdom"
+      },
+      "serviceType": "Private Investigation Services",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Investigation Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Covert Surveillance"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Fraud Investigation"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Missing Persons Investigation"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Personal Investigation"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Background Check Services"
+            }
+          }
+        ]
+      }
+    }
+  };
+
   return (
     <div className="pt-16 md:pt-20">
+      <SEO 
+        title="About Us - Professional Private Investigators | Henderson Thomas Investigations"
+        description="Learn about Henderson Thomas Investigations, a leading private detective agency specializing in professional investigation services with discretion and expertise. Experienced investigators serving London and UK."
+        keywords="about Henderson Thomas Investigations, private detective agency, professional investigators, investigation services London, private investigation company, detective agency UK"
+        url="/about"
+        structuredData={structuredData}
+      />
       {/* Page Header - Full Width */}
       <section className="relative h-80">
         {/* Background Image */}

@@ -1,8 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SEO from '../SEO';
 const PrivacyPolicy = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Privacy Policy - Henderson Thomas Investigations",
+    "description": "Privacy policy explaining how Henderson Thomas Investigations protects and manages your personal information. Learn about our data protection and privacy procedures.",
+    "url": "https://hendersonthomasinvestigations.com/privacy-policy",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Henderson Thomas Investigations",
+      "url": "https://hendersonthomasinvestigations.com"
+    },
+    "about": {
+      "@type": "Organization",
+      "name": "Henderson Thomas Investigations",
+      "url": "https://hendersonthomasinvestigations.com"
+    }
+  };
+
   return (
     <div className="bg-white pt-16 md:pt-20">
+      <SEO 
+        title="Privacy Policy - Data Protection | Henderson Thomas Investigations"
+        description="Privacy policy explaining how Henderson Thomas Investigations protects and manages your personal information. Learn about our data protection and privacy procedures."
+        keywords="privacy policy, data protection, personal information, privacy rights, data security, Henderson Thomas Investigations privacy"
+        url="/privacy-policy"
+        structuredData={structuredData}
+      />
       {/* Page Header - Full Width */}
       <section className="relative mb-12 h-80">
         {/* Background Image */}

@@ -1,8 +1,49 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SEO from '../../SEO';
 const Covert = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Covert Surveillance Services",
+    "description": "Professional covert surveillance and investigation services for legal, personal, and corporate matters. Discreet surveillance by Henderson Thomas Investigations.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Henderson Thomas Investigations",
+      "url": "https://hendersonthomasinvestigations.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1st Floor, 238 Kensington High St",
+        "addressLocality": "London",
+        "postalCode": "W8 6SN",
+        "addressCountry": "GB"
+      },
+      "telephone": "07826 416466",
+      "email": "private@hendersonthomasinvestigations.com"
+    },
+    "serviceType": "Covert Surveillance",
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "offers": {
+      "@type": "Offer",
+      "name": "Covert Surveillance Services",
+      "description": "Discreet surveillance services including photo and video evidence gathering for legal, personal, and corporate matters",
+      "price": "Contact for quote",
+      "availability": "InStock"
+    }
+  };
+
   return (
     <section className="bg-gray-50 pt-16 md:pt-20">
+      <SEO 
+        title="Covert Surveillance Services - Discreet Investigation | Henderson Thomas Investigations"
+        description="Professional covert surveillance and investigation services for legal, personal, and corporate matters. Discreet surveillance by Henderson Thomas Investigations."
+        keywords="covert surveillance, surveillance services, discreet investigation, private surveillance, surveillance London, investigation services UK, covert operations"
+        url="/service/covert"
+        structuredData={structuredData}
+      />
       {/* Hero Section with Background Image */}
       <div
         className="relative w-full h-96 md:h-[500px] flex items-center justify-center text-center"

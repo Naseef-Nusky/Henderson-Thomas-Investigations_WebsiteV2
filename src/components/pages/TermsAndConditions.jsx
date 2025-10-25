@@ -1,8 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SEO from '../SEO';
 const TermsConditions = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Terms & Conditions - Henderson Thomas Investigations",
+    "description": "Terms and conditions for using Henderson Thomas Investigations services. Please read these terms carefully before using our website and services.",
+    "url": "https://hendersonthomasinvestigations.com/terms-and-conditions",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Henderson Thomas Investigations",
+      "url": "https://hendersonthomasinvestigations.com"
+    },
+    "about": {
+      "@type": "Organization",
+      "name": "Henderson Thomas Investigations",
+      "url": "https://hendersonthomasinvestigations.com"
+    }
+  };
+
   return (
     <div className="bg-white pt-16 md:pt-20">
+      <SEO 
+        title="Terms & Conditions - Service Terms | Henderson Thomas Investigations"
+        description="Terms and conditions for using Henderson Thomas Investigations services. Please read these terms carefully before using our website and services."
+        keywords="terms and conditions, service terms, legal terms, website terms, Henderson Thomas Investigations terms, investigation service terms"
+        url="/terms-and-conditions"
+        structuredData={structuredData}
+      />
       {/* Page Header - Full Width */}
       <section className="relative mb-12 h-80">
         {/* Background Image */}

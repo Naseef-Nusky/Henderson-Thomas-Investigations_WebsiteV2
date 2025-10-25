@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 import { getBlogPosts, formatBlogPost, getImageUrl } from '../lib/contentful';
+import SEO from '../SEO';
 
 const BlogPage = () => {
   const [posts, setPosts] = useState([]);
@@ -54,8 +55,47 @@ const BlogPage = () => {
     );
   }
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Henderson Thomas Investigations Blog",
+    "description": "Stay informed with the latest insights, tips, and updates from Henderson Thomas Investigations. Expert team shares valuable knowledge about private investigation services and industry trends.",
+    "url": "https://hendersonthomasinvestigations.com/blogs",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Henderson Thomas Investigations",
+      "url": "https://hendersonthomasinvestigations.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://hendersonthomasinvestigations.com/logo.png"
+      }
+    },
+    "blogPost": posts.map(post => ({
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "description": post.excerpt ? documentToPlainTextString(post.excerpt) : "Private investigation insights and tips",
+      "url": `https://hendersonthomasinvestigations.com/blogs/${post.slug}`,
+      "datePublished": post.publishedDate,
+      "author": {
+        "@type": "Person",
+        "name": post.author || "Henderson Thomas Investigations"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Henderson Thomas Investigations"
+      }
+    }))
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 pt-16 md:pt-20">
+      <SEO 
+        title="Our Blog - Private Investigation Insights & Tips | Henderson Thomas Investigations"
+        description="Stay informed with the latest insights, tips, and updates from Henderson Thomas Investigations. Expert team shares valuable knowledge about private investigation services and industry trends."
+        keywords="private investigation blog, investigation tips, private detective insights, investigation news, detective agency blog, investigation advice, private investigation trends"
+        url="/blogs"
+        structuredData={structuredData}
+      />
       {/* Page Header - Full Width */}
       <section className="relative mb-14 h-80">
         {/* Background Image */}

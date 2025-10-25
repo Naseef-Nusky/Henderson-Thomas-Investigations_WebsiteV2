@@ -1,8 +1,49 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SEO from '../../SEO';
 const FraudInvestigation = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Fraud Investigation Services",
+    "description": "Professional fraud investigation services to protect against deception and financial wrongdoing. Expert fraud investigators by Henderson Thomas Investigations.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Henderson Thomas Investigations",
+      "url": "https://hendersonthomasinvestigations.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1st Floor, 238 Kensington High St",
+        "addressLocality": "London",
+        "postalCode": "W8 6SN",
+        "addressCountry": "GB"
+      },
+      "telephone": "07826 416466",
+      "email": "private@hendersonthomasinvestigations.com"
+    },
+    "serviceType": "Fraud Investigation",
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "offers": {
+      "@type": "Offer",
+      "name": "Fraud Investigation Services",
+      "description": "Comprehensive fraud investigation including scam detection, financial deception, and identity theft investigation",
+      "price": "Contact for quote",
+      "availability": "InStock"
+    }
+  };
+
   return (
     <section className="bg-gray-50 pt-16 md:pt-20">
+      <SEO 
+        title="Fraud Investigation Services - Protect Against Deception | Henderson Thomas Investigations"
+        description="Professional fraud investigation services to protect against deception and financial wrongdoing. Expert fraud investigators by Henderson Thomas Investigations."
+        keywords="fraud investigation, fraud detection, scam investigation, financial fraud, identity theft investigation, fraud investigator London, fraud services UK"
+        url="/service/fraud"
+        structuredData={structuredData}
+      />
       {/* Hero Section with Background Image */}
       <div
         className="relative w-full h-96 md:h-[500px] flex items-center justify-center text-center"

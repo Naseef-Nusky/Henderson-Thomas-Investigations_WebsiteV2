@@ -1,8 +1,49 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SEO from '../../SEO';
 const Services = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Personal Investigation Services",
+    "description": "Confidential personal investigation services for sensitive matters including background checks, infidelity investigations, and family matters. Trusted solutions by Henderson Thomas Investigations.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Henderson Thomas Investigations",
+      "url": "https://hendersonthomasinvestigations.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1st Floor, 238 Kensington High St",
+        "addressLocality": "London",
+        "postalCode": "W8 6SN",
+        "addressCountry": "GB"
+      },
+      "telephone": "07826 416466",
+      "email": "private@hendersonthomasinvestigations.com"
+    },
+    "serviceType": "Personal Investigation",
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "offers": {
+      "@type": "Offer",
+      "name": "Personal Investigation Services",
+      "description": "Confidential personal investigation services including background checks, online dating enquiries, infidelity investigations, and family matters",
+      "price": "Contact for quote",
+      "availability": "InStock"
+    }
+  };
+
   return (
     <section className="bg-gray-50 pt-16 md:pt-20">
+      <SEO 
+        title="Personal Investigation Services - Confidential Solutions | Henderson Thomas Investigations"
+        description="Confidential personal investigation services for sensitive matters including background checks, infidelity investigations, and family matters. Trusted solutions by Henderson Thomas Investigations."
+        keywords="personal investigation, private investigation, infidelity investigation, background check personal, family investigation, personal detective London, confidential investigation UK"
+        url="/service/personal"
+        structuredData={structuredData}
+      />
       {/* Hero Section with Background Image */}
       <div
         className="relative w-full h-96 md:h-[500px] flex items-center justify-center text-center"

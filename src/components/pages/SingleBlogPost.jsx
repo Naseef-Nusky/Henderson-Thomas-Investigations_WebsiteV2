@@ -5,6 +5,7 @@ import { Calendar, User, ArrowLeft, Clock } from 'lucide-react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 import { getBlogPostBySlug, formatBlogPost, getImageUrl } from '../lib/contentful';
+import SEO from '../SEO';
 
 const SingleBlogPost = () => {
   const { slug } = useParams();
@@ -73,8 +74,50 @@ const SingleBlogPost = () => {
     return <Navigate to="/blogs" replace />;
   }
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt ? documentToPlainTextString(post.excerpt) : "Private investigation insights and tips from Henderson Thomas Investigations",
+    "url": `https://hendersonthomasinvestigations.com/blogs/${post.slug}`,
+    "datePublished": post.publishedDate,
+    "dateModified": post.publishedDate,
+    "author": {
+      "@type": "Person",
+      "name": post.author || "Henderson Thomas Investigations"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Henderson Thomas Investigations",
+      "url": "https://hendersonthomasinvestigations.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://hendersonthomasinvestigations.com/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://hendersonthomasinvestigations.com/blogs/${post.slug}`
+    },
+    "image": post.featuredImage ? {
+      "@type": "ImageObject",
+      "url": getImageUrl({ fields: { file: { url: post.featuredImage } } }),
+      "caption": post.title
+    } : undefined,
+    "articleBody": post.content ? documentToPlainTextString(post.content) : undefined,
+    "wordCount": post.content ? documentToPlainTextString(post.content).split(' ').length : undefined,
+    "timeRequired": formatReadingTime(post.content)
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 pt-20 md:pt-32 pb-24">
+      <SEO 
+        title={`${post.title} | Henderson Thomas Investigations Blog`}
+        description={post.excerpt ? documentToPlainTextString(post.excerpt) : "Private investigation insights and tips from Henderson Thomas Investigations"}
+        keywords={`${post.title}, private investigation, detective insights, investigation tips, Henderson Thomas Investigations`}
+        url={`/blogs/${post.slug}`}
+        structuredData={structuredData}
+      />
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         {/* Article */}
         <article className="max-w-none text-justify">

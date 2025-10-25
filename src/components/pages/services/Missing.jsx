@@ -1,8 +1,49 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SEO from '../../SEO';
 const MissingPersons = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Missing Persons Investigation",
+    "description": "Professional missing persons investigation services with compassionate support. Expert tracing and location services by Henderson Thomas Investigations.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Henderson Thomas Investigations",
+      "url": "https://hendersonthomasinvestigations.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1st Floor, 238 Kensington High St",
+        "addressLocality": "London",
+        "postalCode": "W8 6SN",
+        "addressCountry": "GB"
+      },
+      "telephone": "07826 416466",
+      "email": "private@hendersonthomasinvestigations.com"
+    },
+    "serviceType": "Missing Persons Investigation",
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "offers": {
+      "@type": "Offer",
+      "name": "Missing Persons Investigation",
+      "description": "Expert missing persons location services using advanced tracing methods and global contacts",
+      "price": "Contact for quote",
+      "availability": "InStock"
+    }
+  };
+
   return (
     <section className="bg-gray-50 pt-16 md:pt-20">
+      <SEO 
+        title="Missing Persons Investigation - Professional Tracing Services | Henderson Thomas Investigations"
+        description="Professional missing persons investigation services with compassionate support. Expert tracing and location services by Henderson Thomas Investigations."
+        keywords="missing persons investigation, missing person search, person tracing, missing person London, tracing services UK, locate missing person, find missing person"
+        url="/service/missing"
+        structuredData={structuredData}
+      />
       {/* Hero Section with Background Image */}
       <div
         className="relative w-full h-96 md:h-[500px] flex items-center justify-center text-center"
