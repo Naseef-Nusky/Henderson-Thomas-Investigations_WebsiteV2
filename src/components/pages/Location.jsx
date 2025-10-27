@@ -268,7 +268,7 @@ const Location = () => {
           </div>
 
         {/* Main Content */}
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-12 space-y-10 text-justify">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-12 space-y-10 text-left md:text-justify">
             {/* Introduction */}
             <div className="space-y-4">
               <p className="text-gray-700 leading-relaxed text-base md:text-lg">
@@ -499,7 +499,7 @@ const Location = () => {
         </div>
 
         {/* Main Content */}
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-12 space-y-10 text-justify">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-12 space-y-10 text-left md:text-justify">
           {/* Introduction */}
           <div className="space-y-4">
             <p className="text-gray-700 leading-relaxed text-base md:text-lg">
