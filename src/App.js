@@ -14,7 +14,7 @@ import PrivacyPolicy from './components/pages/PrivacyPolicy';
 import TermsAndConditions from './components/pages/TermsAndConditions';
 // Service pages
 import BackgroundCheck from './components/pages/services/Background';
-import CovertSurveillance from './components/pages/services/Covert';
+import Covert from './components/pages/services/Covert';
 import FraudInvestigation from './components/pages/services/Fraud';
 import MissingPersons from './components/pages/services/Missing';
 import PersonalInvestigation from './components/pages/services/Personal';
@@ -51,7 +51,7 @@ function App() {
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           {/* Service pages */}
           <Route path="/service/background" element={<BackgroundCheck />} />
-          <Route path="/service/covert" element={<CovertSurveillance />} />
+          <Route path="/service/covert" element={<Covert />} />
           <Route path="/service/fraud" element={<FraudInvestigation />} />
           <Route path="/service/missing" element={<MissingPersons />} />
           <Route path="/service/personal" element={<PersonalInvestigation />} />
