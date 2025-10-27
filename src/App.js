@@ -12,6 +12,7 @@ import ContactPage from './components/pages/ContactUs';
 import SingleBlogPost from './components/pages/SingleBlogPost';
 import PrivacyPolicy from './components/pages/PrivacyPolicy';
 import TermsAndConditions from './components/pages/TermsAndConditions';
+import Location from './components/pages/Location';
 // Service pages
 import BackgroundCheck from './components/pages/services/Background';
 import Covert from './components/pages/services/Covert';
@@ -49,6 +50,7 @@ function App() {
           <Route path="/blogs/:slug" element={<SingleBlogPost />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/location/:locationName" element={<Location />} />
           {/* Service pages */}
           <Route path="/service/background" element={<BackgroundCheck />} />
           <Route path="/service/covert" element={<Covert />} />

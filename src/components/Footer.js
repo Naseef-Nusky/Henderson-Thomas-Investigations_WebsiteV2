@@ -62,27 +62,31 @@ const Footer = () => {
           {/* UK Locations */}
           <div className="col-span-1 md:col-span-2 lg:col-span-2 text-left">
             <h3 className="text-base md:text-lg font-semibold mb-4 text-blue-600 text-left">Investigator Locations</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2 text-sm md:text-base text-gray-700">
-              <div>Central London</div>
-              <div>Bristol</div>
-              <div>Essex</div>
-              <div>Cornwall</div>
-              <div>Hertfordshire</div>
-              <div>Cambridge</div>
-              <div>Devon</div>
-              <div>Oxford</div>
-              <div>Guildford</div>
-              <div>Reading</div>
-              <div>North London</div>
-              <div>Surrey</div>
-              <div>Kent</div>
-              <div>Wales</div>
-              <div>St Albans</div>
-              <div>Bournemouth</div>
-              <div>Norwich</div>
-              <div>Gloucestershire</div>
-              <div>Berkshire</div>
-              <div>Gloucester</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3 text-sm md:text-base">
+              <Link to="/location/london-south-east" className="hover:text-blue-600 transition-colors duration-300 text-gray-700">
+                London & South East
+              </Link>
+              <Link to="/location/south-west-england" className="hover:text-blue-600 transition-colors duration-300 text-gray-700">
+                South West England
+              </Link>
+              <Link to="/location/south-central-east" className="hover:text-blue-600 transition-colors duration-300 text-gray-700">
+                South Central & East England
+              </Link>
+              <Link to="/location/midlands" className="hover:text-blue-600 transition-colors duration-300 text-gray-700">
+                Midlands
+              </Link>
+              <Link to="/location/north-england" className="hover:text-blue-600 transition-colors duration-300 text-gray-700">
+                North of England
+              </Link>
+              <Link to="/location/scotland" className="hover:text-blue-600 transition-colors duration-300 text-gray-700">
+                Scotland
+              </Link>
+              <Link to="/location/wales-region" className="hover:text-blue-600 transition-colors duration-300 text-gray-700">
+                Wales
+              </Link>
+              <Link to="/location/northern-ireland" className="hover:text-blue-600 transition-colors duration-300 text-gray-700">
+                Northern Ireland
+              </Link>
             </div>
           </div>
 
