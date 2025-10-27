@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100 text-gray-800 py-8 md:py-12">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2 xl:col-span-2 text-left">
             <div className="mb-4 flex items-center space-x-3">
@@ -41,6 +41,18 @@ const Footer = () => {
               <li><Link to="/blogs" className="text-sm md:text-base hover:text-blue-600 transition-colors duration-300 cursor-pointer text-left">Blog</Link></li>
               <li><Link to="/contact" className="text-sm md:text-base hover:text-blue-600 transition-colors duration-300 cursor-pointer text-left">Contact</Link></li>
               <li><Link to="/privacy-policy" className="text-sm md:text-base hover:text-blue-600 transition-colors duration-300 cursor-pointer text-left">Privacy Policy</Link></li>
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div className="text-left">
+            <h3 className="text-base md:text-lg font-semibold mb-4 text-blue-600 text-left">Our Services</h3>
+            <ul className="space-y-2 text-gray-700 text-left">
+              <li><Link to="/service/background" className="text-sm md:text-base hover:text-blue-600 transition-colors duration-300 cursor-pointer text-left">Background Checks</Link></li>
+              <li><Link to="/service/covert" className="text-sm md:text-base hover:text-blue-600 transition-colors duration-300 cursor-pointer text-left">Covert Surveillance</Link></li>
+              <li><Link to="/service/fraud" className="text-sm md:text-base hover:text-blue-600 transition-colors duration-300 cursor-pointer text-left">Fraud Investigation</Link></li>
+              <li><Link to="/service/missing" className="text-sm md:text-base hover:text-blue-600 transition-colors duration-300 cursor-pointer text-left">Missing Persons</Link></li>
+              <li><Link to="/service/personal" className="text-sm md:text-base hover:text-blue-600 transition-colors duration-300 cursor-pointer text-left">Personal Investigation</Link></li>
             </ul>
           </div>
 
