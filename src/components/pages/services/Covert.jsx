@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SEO from '../../SEO';
+
 const Covert = () => {
   const structuredData = {
     "@context": "https://schema.org",
