@@ -290,25 +290,25 @@ const Location = () => {
               <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-6">
                 Henderson Thomas Investigations offers a comprehensive range of professional investigative services designed to meet your specific needs. Explore our specialized services below:
               </p>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-gray-700 text-lg">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-gray-700 text-sm md:text-lg">
                 <li className="flex items-center">
-                  <span className="text-blue-600 mr-3 font-bold">✓</span>
+                  <span className="text-blue-600 mr-2 font-bold text-lg">✓</span>
                   Background Checks
                 </li>
                 <li className="flex items-center">
-                  <span className="text-blue-600 mr-3 font-bold">✓</span>
+                  <span className="text-blue-600 mr-2 font-bold text-lg">✓</span>
                   Covert Surveillance
                 </li>
                 <li className="flex items-center">
-                  <span className="text-blue-600 mr-3 font-bold">✓</span>
+                  <span className="text-blue-600 mr-2 font-bold text-lg">✓</span>
                   Fraud Investigation
                 </li>
                 <li className="flex items-center">
-                  <span className="text-blue-600 mr-3 font-bold">✓</span>
+                  <span className="text-blue-600 mr-2 font-bold text-lg">✓</span>
                   Missing Persons
                 </li>
                 <li className="flex items-center">
-                  <span className="text-blue-600 mr-3 font-bold">✓</span>
+                  <span className="text-blue-600 mr-2 font-bold text-lg">✓</span>
                   Personal Investigation
                 </li>
               </ul>
@@ -323,8 +323,8 @@ const Location = () => {
               
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-gray-700 text-sm md:text-lg">
                 {regionData_obj.locations.map((loc, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="text-blue-600 mr-3 mt-1 font-bold text-lg">•</span>
+                  <li key={index} className="flex items-center">
+                    <span className="text-blue-600 mr-2 font-bold text-lg">•</span>
                     <span>
                       Private Investigator in {loc.name}
                     </span>
