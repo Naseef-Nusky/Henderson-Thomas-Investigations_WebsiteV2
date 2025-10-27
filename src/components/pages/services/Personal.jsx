@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SEO from '../../SEO';
-const Services = () => {
+
+const PersonalInvestigation = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -152,4 +153,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default PersonalInvestigation;

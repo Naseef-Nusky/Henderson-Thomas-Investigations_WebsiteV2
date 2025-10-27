@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const HeroSection = () => {
   return (
     <section className="relative pt-20 pb-16 min-h-screen flex items-center">
