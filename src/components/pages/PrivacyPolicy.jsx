@@ -184,3 +184,32 @@ const PrivacyPolicy = () => {
 };
 
 export default PrivacyPolicy;
+
+            permitted to do so by law.
+          </li>
+          <li>
+            Our trusted business partners, whose products and services may save
+            you money.
+          </li>
+        </ul>
+        <p className="text-gray-700 mb-6 text-sm md:text-base leading-relaxed">
+          You can ask us to stop passing your information to third parties for
+          marketing purposes at any time, which we will do. Such a request may
+          result in us ceasing to offer the services to you.
+        </p>
+
+        {/* Section 5 */}
+        <h2 className="text-lg font-semibold text-black mb-2">
+          5. How to Contact Henderson Thomas Investigations
+        </h2>
+        <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+          We welcome your views about our website and our Privacy Policy. If you
+          have any queries or comments, feel free to contact us.
+        </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PrivacyPolicy;

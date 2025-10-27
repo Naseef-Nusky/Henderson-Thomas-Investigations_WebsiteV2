@@ -128,3 +128,32 @@ const TermsConditions = () => {
 };
 
 export default TermsConditions;
+
+        </p>
+
+        {/* Section 3 */}
+        <h2 className="text-lg font-semibold text-black mb-2">
+          3. Changes to the Terms
+        </h2>
+        <p className="text-gray-700 mb-6 text-sm md:text-base leading-relaxed">
+          Henderson Thomas Investigations may change the site or these terms at
+          any time. If you use the site after Henderson Thomas Investigations has
+          changed the terms, you will be bound by the new terms.
+        </p>
+
+        {/* Section 4 */}
+        <h2 className="text-lg font-semibold text-black mb-2">
+          4. Governing Law and Jurisdiction
+        </h2>
+        <p className="text-gray-700 mb-6 text-sm md:text-base leading-relaxed">
+          These terms and your use of this site are governed by and construed in
+          accordance with the laws of England and Wales, and any disputes will be
+          decided only by the Courts of England and Wales.
+        </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default TermsConditions;

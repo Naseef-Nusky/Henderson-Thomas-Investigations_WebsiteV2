@@ -17,6 +17,5 @@ Allow: /
 
 User-agent: Bingbot
 Allow: /
-
 User-agent: Slurp
 Allow: /

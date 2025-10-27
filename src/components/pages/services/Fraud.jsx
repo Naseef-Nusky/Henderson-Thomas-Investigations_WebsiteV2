@@ -190,3 +190,42 @@ const FraudInvestigation = () => {
 };
 
 export default FraudInvestigation;
+
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              As fraud increasingly takes place in the digital world, our team
+              uses cutting-edge digital forensic techniques to examine
+              electronic evidence, such as emails, social media communications,
+              and digital transactions. This helps us trace the origins of
+              fraudulent activities and gather critical evidence.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-800">
+              Confidentiality & Legal Compliance
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              We understand the sensitive nature of fraud investigations, which
+              is why confidentiality is our top priority. Our team operates
+              discreetly to protect our client’s sensitive information, ensuring
+              that all processes comply with legal and ethical standards. This
+              adherence to best practices guarantees that our investigations
+              stand up to scrutiny in legal proceedings.
+            </p>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-12 text-center">
+<Link
+  to="/contact"
+  className="inline-block px-6 py-3 bg-[#0047b2] text-white rounded-lg shadow-md hover:bg-[#003080] transition-colors font-semibold"
+>
+  Contact Us Today
+</Link>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default FraudInvestigation;

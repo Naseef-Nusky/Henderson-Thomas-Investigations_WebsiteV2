@@ -153,3 +153,42 @@ const Services = () => {
 };
 
 export default Services;
+
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold text-gray-800">Initial Consultation</h3>
+            <p className="text-gray-700 leading-relaxed">
+              A successful investigation always begins with a comprehensive consultation. We take the time to listen and understand your specific situation, goals, and any concerns you may have. This confidential discussion allows us to establish a clear understanding of your needs and expectations, ensuring that we create a bespoke plan of action. By personalising our approach from the very start, we ensure that every step of the investigation is aligned with your objectives, giving you the best chance of achieving the desired outcome.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-800">Investigation Phase</h3>
+            <p className="text-gray-700 leading-relaxed">
+              Once we’ve established the goals and scope of your case, our dedicated investigators spring into action. Combining time-tested investigative techniques with the latest technological tools, we gather evidence, conduct thorough interviews, and follow every lead with precision. Our team is proficient in a wide range of methods, including surveillance, digital forensics, and adherence to legal protocols, allowing us to approach your case from every angle. We ensure that each step is taken carefully and strategically, providing you with the most comprehensive and accurate results.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-800">Reporting & Documentation</h3>
+            <p className="text-gray-700 leading-relaxed">
+              Transparency and accountability are at the heart of our approach. Throughout the investigation, we maintain detailed records and document all findings thoroughly. Our reports are not only clear and concise but also prepared to be admissible in legal proceedings, should the need arise. We ensure you are kept informed throughout the process, providing you with updates at every stage, so you always know exactly where your case stands.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-800">Client Communication</h3>
+            <p className="text-gray-700 leading-relaxed">
+              We understand that clear communication is crucial for a successful partnership. Our team makes it a priority to keep you informed with regular updates on the status of your case. If you have any questions or concerns, we’re always available to provide answers and offer guidance. Your peace of mind is our focus, and we strive to ensure you feel supported and confident at every step of the investigation.
+            </p>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="mt-12 text-center">
+<Link
+  to="/contact"
+  className="inline-block px-6 py-3 bg-[#0047b2] text-white rounded-lg shadow-md hover:bg-[#003080] transition-colors font-semibold"
+>
+  Contact Us Today
+</Link>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Services;

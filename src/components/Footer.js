@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100 text-gray-800 py-8 md:py-12">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Company Info */}
-          <div className="col-span-1 md:col-span-2 xl:col-span-2 text-left">
+          <div className="col-span-1 md:col-span-2 text-left">
             <div className="mb-4 flex items-center space-x-3">
               <img 
                 src="/logo.png" 
@@ -55,26 +55,54 @@ const Footer = () => {
               <li><Link to="/service/personal" className="text-sm md:text-base hover:text-blue-600 transition-colors duration-300 cursor-pointer text-left">Personal Investigation</Link></li>
             </ul>
           </div>
+        </div>
+
+        {/* Second Row - Locations and Contact */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+          {/* UK Locations */}
+          <div className="col-span-1 md:col-span-2 lg:col-span-2 text-left">
+            <h3 className="text-base md:text-lg font-semibold mb-4 text-blue-600 text-left">Investigator Locations</h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2 text-sm md:text-base text-gray-700">
+              <div>Central London</div>
+              <div>Bristol</div>
+              <div>Essex</div>
+              <div>Cornwall</div>
+              <div>Hertfordshire</div>
+              <div>Cambridge</div>
+              <div>Devon</div>
+              <div>Oxford</div>
+              <div>Guildford</div>
+              <div>Reading</div>
+              <div>North London</div>
+              <div>Surrey</div>
+              <div>Kent</div>
+              <div>Wales</div>
+              <div>St Albans</div>
+              <div>Bournemouth</div>
+              <div>Norwich</div>
+              <div>Gloucestershire</div>
+              <div>Berkshire</div>
+              <div>Gloucester</div>
+            </div>
+          </div>
 
           {/* Contact Info */}
-          <div className="text-left">
+          <div className="col-span-1 md:col-span-1 lg:col-span-2 text-left">
             <h3 className="text-base md:text-lg font-semibold mb-4 text-blue-600 text-left">Contact Us</h3>
-            <div className="space-y-2 text-gray-700 text-left">
-              <div className="flex items-start text-left">
-                <span className="mr-2 mt-1">📍</span>
-                <div className="text-left">
-                  <p className="text-sm md:text-base font-semibold text-left">HENDERSON THOMAS INVESTIGATIONS</p>
-                  <p className="text-sm md:text-base text-left">1st Floor, 238 Kensington High St,</p>
-                  <p className="text-sm md:text-base text-left">London W8 6SN</p>
-                </div>
+            <div className="space-y-3 text-sm md:text-base text-gray-700">
+              <div>
+                <p className="font-semibold mb-1">📍 Address</p>
+                <p>HENDERSON THOMAS INVESTIGATIONS</p>
+                <p>1st Floor, 238 Kensington High St,</p>
+                <p>London W8 6SN</p>
               </div>
-              <div className="flex items-center text-left">
-                <span className="mr-2">📧</span>
-                <span className="text-sm md:text-base text-left">private@hendersonthomasinvestigations.com</span>
+              <div>
+                <p className="font-semibold mb-1">📧 Email</p>
+                <p>private@hendersonthomasinvestigations.com</p>
               </div>
-              <div className="flex items-center text-left">
-                <span className="mr-2">📞</span>
-                <span className="text-sm md:text-base text-left">07826 416466</span>
+              <div>
+                <p className="font-semibold mb-1">📞 Phone</p>
+                <p>07826 416466</p>
               </div>
             </div>
           </div>
