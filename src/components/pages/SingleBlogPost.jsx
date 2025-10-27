@@ -120,7 +120,7 @@ const SingleBlogPost = () => {
       />
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         {/* Article */}
-        <article className="max-w-none text-justify">
+        <article className="max-w-none text-left md:text-justify">
           {/* Header */}
           <header className="mb-8 mt-8">
             {/* Title */}
@@ -146,7 +146,7 @@ const SingleBlogPost = () => {
 
             {/* Excerpt */}
             {post.excerpt && (
-              <p className="text-xl text-gray-600 leading-relaxed mb-6 text-justify">
+              <p className="text-xl text-gray-600 leading-relaxed mb-6 text-left md:text-justify">
                 {documentToPlainTextString(post.excerpt)}
               </p>
             )}
@@ -164,7 +164,7 @@ const SingleBlogPost = () => {
           )}
 
           {/* Content */}
-          <div className="prose prose-lg max-w-none text-justify">
+          <div className="prose prose-lg max-w-none text-left md:text-justify">
             {post.content && (
               <div className="text-gray-700 leading-relaxed">
                 {documentToReactComponents(post.content)}
