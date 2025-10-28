@@ -100,12 +100,15 @@ const ServicesGrid = () => {
                 
                 {/* Read More Button */}
                 <div className="mt-auto">
-                  <div className="inline-flex items-center bg-[#0047b2] text-white px-4 py-2 rounded-lg font-semibold group-hover:bg-blue-700 transition-colors duration-300">
+                  <Link 
+                    to={service.link}
+                    className="inline-flex items-center bg-[#0047b2] text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300"
+                  >
                     <span>Read More</span>
                     <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                  </div>
+                  </Link>
                 </div>
               </div>
             </Link>

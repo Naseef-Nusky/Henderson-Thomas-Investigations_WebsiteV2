@@ -6,12 +6,12 @@ import SEO from '../SEO';
 const generateLocationContent = (location, area) => ({
   location,
   slug: area,
-  intro: `When you need clear answers to complex problems, the support from our specialist private investigators is essential. Henderson Thomas Investigations regularly supports clients across ${location}, equipped to supply the factual clarity you need to handle difficult situations with confidence.`,
-  services: `Our services are built around delivering reliable intelligence tailored to your unique circumstances. Whether you are a business owner with corporate concerns or a private individual seeking resolution on a personal issue, we offer a discreet and effective approach.`,
-  consultation: `For your free, no-obligation consultation, call us on 07826 416466 or complete our website enquiry form.`,
+  intro: `When complex situations demand reliable answers, our experienced private investigators are here to help. We regularly assist clients throughout ${location}, delivering clear, evidence-based insights so you can move forward with confidence.`,
+  services: `Every case is handled with a tailored plan focused on dependable results. Whether you’re a company managing sensitive issues or an individual seeking clarity, we provide a confidential, efficient and discreet service.`,
+  consultation: `For a free, no‑obligation consultation, call 07826 416466 or send an enquiry via our contact form.`,
   headerImage: "/heronew.jpg",
   privateClientTitle: `${location} Investigators for Private Clients`,
-  privateClientContent: `When personal matters create doubt and uncertainty, gaining clarity allows you to restore balance and make decisions with confidence. Our private investigators in ${location} are dedicated to providing the answers you need. Using advanced techniques, we gather the facts required to give you peace of mind and help you move forward in a positive direction. We recognise that your situation is personal, which is why our approach is always tailored to your specific objectives. We handle every case with complete discretion and professionalism, combining sophisticated investigative work with a commitment to client care.`,
+  privateClientContent: `When personal issues create uncertainty, clear information helps you regain control and make informed decisions. Our private investigators in ${location} work to uncover the facts you need. Using proven methods, we gather accurate evidence to provide reassurance and help you take the next step with confidence. Every case is handled with care, discretion and professionalism, with our approach shaped around your specific goals.`,
   privateServices: [
     "Spouse investigations",
     "Covert surveillance",
@@ -22,7 +22,7 @@ const generateLocationContent = (location, area) => ({
     "Missing person investigation"
   ],
   corporateTitle: `${location} Detectives for Corporate Clients`,
-  corporateContent: `Protecting your company's reputation and financial stability is fundamental to long-term success. Our corporate investigators specialise in identifying and mitigating risks, providing the expert support you need to address complex business challenges. We manage every investigation with absolute discretion and precision, ensuring your business operations remain secure. Our services are designed to protect your assets, uphold your company's integrity, and supply the assurance you need to act decisively. You can rely on our private detectives to handle your case with the diligence and attention it requires.`,
+  corporateContent: `Safeguarding your organisation’s reputation and assets is essential. Our corporate investigators help identify risk, uncover the facts and support decisive action. We conduct each investigation with strict confidentiality and attention to detail, so your operations remain protected. Our services are built to defend your business, maintain integrity and give you confidence in your next steps.`,
   corporateServices: [
     "Fraud investigations",
     "Background checks",
@@ -272,15 +272,16 @@ const Location = () => {
             {/* Introduction */}
             <div className="space-y-4">
               <p className="text-gray-700 leading-relaxed text-base md:text-lg">
-                When you need clear answers to complex problems, the support from our specialist private investigators is essential. Henderson Thomas Investigations regularly supports clients across {regionData_obj.title}, equipped to supply the factual clarity you need to handle difficult situations with confidence.
+                When difficult circumstances demand clarity, professional investigation can make all the difference. Henderson Thomas Investigations supports clients across {regionData_obj.title}, delivering the evidence and insight required to resolve sensitive matters with confidence.
               </p>
               <p className="text-gray-700 leading-relaxed text-base md:text-lg">
-                Our services are built around delivering reliable intelligence tailored to your unique circumstances. Whether you are a business owner with corporate concerns or a private individual seeking resolution on a personal issue, we offer a discreet and effective approach.
+                Every investigation is designed around your specific objectives, ensuring accurate, actionable intelligence. From complex corporate issues to delicate personal concerns, we provide a confidential and results-driven service you can trust.
               </p>
               <p className="text-gray-700 leading-relaxed text-base md:text-lg">
-                For your free, no-obligation consultation, call us on 07826 416466 or complete our website enquiry form.
+                For a free, no-obligation consultation, please call <strong>07826 416466</strong> or complete our secure online enquiry form.
               </p>
             </div>
+
 
             {/* Our Services Section */}
             <div className="space-y-6 bg-white p-6 md:p-8 rounded-lg shadow-md">
@@ -339,7 +340,7 @@ const Location = () => {
                 {regionData_obj.title} Investigators for Private Clients
               </h2>
               <p className="text-gray-700 leading-relaxed text-base md:text-lg">
-                When personal matters create doubt and uncertainty, gaining clarity allows you to restore balance and make decisions with confidence. Our private investigators across {regionData_obj.title} are dedicated to providing the answers you need. Using advanced techniques, we gather the facts required to give you peace of mind and help you move forward in a positive direction. We recognise that your situation is personal, which is why our approach is always tailored to your specific objectives. We handle every case with complete discretion and professionalism, combining sophisticated investigative work with a commitment to client care.
+              When personal issues lead to doubt or confusion, obtaining clear and reliable information is essential for making confident decisions. Our team of private investigators across {regionData_obj.title} specialises in uncovering the facts that matter most to you. Using advanced investigative techniques and a confidential approach, we provide the clarity you need to move forward with assurance and peace of mind
               </p>
 
               <div>
@@ -383,7 +384,7 @@ const Location = () => {
                 {regionData_obj.title} Detectives for Corporate Clients
               </h2>
               <p className="text-gray-700 leading-relaxed text-base md:text-lg">
-                Protecting your company's reputation and financial stability is fundamental to long-term success. Our corporate investigators specialise in identifying and mitigating risks, providing the expert support you need to address complex business challenges. We manage every investigation with absolute discretion and precision, ensuring your business operations remain secure. Our services are designed to protect your assets, uphold your company's integrity, and supply the assurance you need to act decisively. You can rely on our private detectives to handle your case with the diligence and attention it requires.
+              Protecting your business from financial loss, reputational harm, and internal risks is crucial to lasting success. Our experienced corporate investigators across {regionData_obj.title} deliver comprehensive solutions to identify, assess, and prevent threats to your organisation. Each case is handled with strict confidentiality and precision to ensure your company’s interests remain secure. We are committed to safeguarding your assets, upholding corporate integrity, and empowering you to make informed, confident business decisions.
               </p>
 
               <div>

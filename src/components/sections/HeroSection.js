@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 const HeroSection = () => {
@@ -24,12 +25,12 @@ const HeroSection = () => {
             Specialist in private, corporate and legal investigations
           </p>
           <div className="flex justify-center">
-            <a 
-              href="/about" 
+            <Link 
+              to="/about" 
               className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-gray-900 transition-colors duration-300"
             >
               Read About Us
-            </a>
+            </Link>
           </div>
         </div>
       </div>

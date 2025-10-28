@@ -156,7 +156,7 @@ const ServicesSlider = () => {
                   }}
                 >
                   <div className={`bg-white overflow-hidden h-full flex flex-col hover:shadow-xl transition-all duration-300 hover:-translate-y-2 ${
-                    isMobile ? 'rounded-2xl border-0' : 'rounded-2xl border border-gray-100'
+                    isMobile ? 'rounded-2xl border-0 shadow-lg' : 'rounded-2xl shadow-lg border border-gray-100'
                   }`}>
                     <div className="relative">
                       <div
@@ -164,7 +164,6 @@ const ServicesSlider = () => {
                         style={{ backgroundImage: `url(${s.img})` }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                      <div className="absolute inset-0 bg-blue-600/20"></div>
                       <div className="absolute bottom-4 left-4 right-4">
                         <h3 className="text-xl font-bold text-white mb-2 drop-shadow-lg">
                           {s.title}

@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Henderson Thomas",
+  "name": "Henderson Thomas Investigations - Professional Private Detective Services",
+  "description": "UK's top-rated private detective agency specializing in corporate investigations, covert surveillance, fraud investigation, missing persons, and background checks.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +19,11 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#0047b2",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "categories": ["business", "professional-services"],
+  "screenshots": []
 }

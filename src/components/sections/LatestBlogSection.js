@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LatestBlogSection = () => {
   const latestPosts = [
@@ -78,15 +79,15 @@ const LatestBlogSection = () => {
 
         {/* View All Button */}
         <div className="text-center">
-          <a 
-            href="/blogs" 
+          <Link 
+            to="/blogs" 
             className="inline-flex items-center bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-blue-600 hover:border-blue-700"
           >
             View All Blog Posts
             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

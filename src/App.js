@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -13,6 +13,7 @@ import SingleBlogPost from './components/pages/SingleBlogPost';
 import PrivacyPolicy from './components/pages/PrivacyPolicy';
 import TermsAndConditions from './components/pages/TermsAndConditions';
 import Location from './components/pages/Location';
+import NotFound from './components/pages/NotFound';
 // Service pages
 import BackgroundCheck from './components/pages/services/Background';
 import Covert from './components/pages/services/Covert';
@@ -57,6 +58,7 @@ function App() {
           <Route path="/service/fraud" element={<FraudInvestigation />} />
           <Route path="/service/missing" element={<MissingPersons />} />
           <Route path="/service/personal" element={<PersonalInvestigation />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
         <MobileCallPill />
@@ -89,12 +91,12 @@ function App() {
                   >
                     📞 Call: 07826 416466
                   </a>
-                  <a
-                    href="/contact"
+                  <Link
+                    to="/contact"
                     className="block w-full bg-gray-100 text-gray-800 py-3 px-6 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
                   >
-                    📧 Contact Form
-                  </a>
+                    📧 Get Your Free Quote
+                  </Link>
                 </div>
               </div>
             </div>

@@ -88,7 +88,7 @@ const BlogPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-16 md:pt-20">
+    <div className="bg-gray-50 pt-16 md:pt-20">
       <SEO 
         title="Our Blog - Private Investigation Insights & Tips | Henderson Thomas Investigations"
         description="Stay informed with the latest insights, tips, and updates from Henderson Thomas Investigations. Expert team shares valuable knowledge about private investigation services and industry trends."

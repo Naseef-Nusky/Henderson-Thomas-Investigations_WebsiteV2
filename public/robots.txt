@@ -1,21 +1,37 @@
+# Allow all search engines
 User-agent: *
+
+# Allow all pages
 Allow: /
 
-# Sitemap
+# Sitemap location
 Sitemap: https://hendersonthomasinvestigations.com/sitemap.xml
 
-# Crawl-delay
+# Crawl rate (respectful crawling)
 Crawl-delay: 1
 
-# Disallow admin areas (if any)
+# Disallow specific paths if they exist (add your actual admin paths)
 Disallow: /admin/
 Disallow: /private/
+Disallow: /*.json$
+Disallow: /api/
 
-# Allow all search engines to crawl
+# Specific rules for major search engines
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
+
 User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Allow mobile crawlers
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Bingbot-Mobile
 Allow: /

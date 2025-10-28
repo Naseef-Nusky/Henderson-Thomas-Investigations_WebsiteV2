@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SEO = ({ title, description, keywords, url, structuredData }) => {
+const SEO = ({ title, description, keywords, url, structuredData, image, robots }) => {
   useEffect(() => {
     // Update document title
     if (title) {
@@ -8,22 +8,31 @@ const SEO = ({ title, description, keywords, url, structuredData }) => {
     }
 
     // Update or create meta tags
-    const updateMetaTag = (name, content) => {
+    const updateMetaTag = (name, content, isProperty = false) => {
       if (!content) return;
       
-      let tag = document.querySelector(`meta[name="${name}"]`) || 
-                document.querySelector(`meta[property="${name}"]`);
+      const attribute = isProperty ? 'property' : 'name';
+      let tag = document.querySelector(`meta[${attribute}="${name}"]`);
       
       if (!tag) {
         tag = document.createElement('meta');
-        if (name.startsWith('og:') || name.startsWith('twitter:')) {
-          tag.setAttribute('property', name);
-        } else {
-          tag.setAttribute('name', name);
-        }
+        tag.setAttribute(attribute, name);
         document.head.appendChild(tag);
       }
       tag.setAttribute('content', content);
+    };
+
+    // Helper to update or create link tags
+    const updateLinkTag = (rel, href) => {
+      if (!href) return;
+      
+      let link = document.querySelector(`link[rel="${rel}"]`);
+      if (!link) {
+        link = document.createElement('link');
+        link.setAttribute('rel', rel);
+        document.head.appendChild(link);
+      }
+      link.setAttribute('href', href);
     };
 
     // Update description
@@ -36,25 +45,54 @@ const SEO = ({ title, description, keywords, url, structuredData }) => {
       updateMetaTag('keywords', keywords);
     }
 
-    // Update Open Graph tags
+    // Update canonical URL
     if (url) {
-      updateMetaTag('og:url', `${window.location.origin}${url}`);
-    }
-    if (title) {
-      updateMetaTag('og:title', title);
-    }
-    if (description) {
-      updateMetaTag('og:description', description);
+      const canonicalUrl = `${window.location.origin}${url}`;
+      updateLinkTag('canonical', canonicalUrl);
     }
 
-    // Update Twitter Card tags
+    // Update Open Graph tags
+    updateMetaTag('og:type', 'website', true);
+    if (url) {
+      updateMetaTag('og:url', `${window.location.origin}${url}`, true);
+    }
     if (title) {
-      updateMetaTag('twitter:title', title);
+      updateMetaTag('og:title', title, true);
     }
     if (description) {
-      updateMetaTag('twitter:description', description);
+      updateMetaTag('og:description', description, true);
     }
-  }, [title, description, keywords, url]);
+    if (image) {
+      updateMetaTag('og:image', image, true);
+    } else {
+      updateMetaTag('og:image', `${window.location.origin}/logo.png`, true);
+    }
+    updateMetaTag('og:site_name', 'Henderson Thomas Investigations', true);
+    updateMetaTag('og:locale', 'en_GB', true);
+
+    // Update Twitter Card tags
+    updateMetaTag('twitter:card', 'summary_large_image', true);
+    if (url) {
+      updateMetaTag('twitter:url', `${window.location.origin}${url}`, true);
+    }
+    if (title) {
+      updateMetaTag('twitter:title', title, true);
+    }
+    if (description) {
+      updateMetaTag('twitter:description', description, true);
+    }
+    if (image) {
+      updateMetaTag('twitter:image', image, true);
+    } else {
+      updateMetaTag('twitter:image', `${window.location.origin}/logo.png`, true);
+    }
+
+    // Update author
+    updateMetaTag('author', 'Henderson Thomas Investigations');
+    
+    // Update robots (allow override)
+    updateMetaTag('robots', robots || 'index, follow');
+  }, [title, description, keywords, url, image, robots]);
 
   // Add structured data as a script tag
   useEffect(() => {
@@ -67,7 +105,7 @@ const SEO = ({ title, description, keywords, url, structuredData }) => {
       script = document.createElement('script');
       script.id = scriptId;
       script.type = 'application/ld+json';
-      document.body.appendChild(script);
+      document.head.appendChild(script);
     }
 
     script.textContent = JSON.stringify(structuredData);
